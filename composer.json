@@ -1,0 +1,16 @@
+{
+    "name": "usuario/sistema-visitas",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\SistemaVisitas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "OTI"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    }
+}
