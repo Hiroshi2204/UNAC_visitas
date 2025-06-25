@@ -80,6 +80,10 @@
 	.select2-container--default .select2-selection--single .select2-selection__rendered {
 		line-height: 48px;
 	}
+
+	.is-invalid {
+		border: 2px solid red;
+	}
 </style>
 <script type="text/javascript" src="../js/visita.js"></script>
 <div class="col-md-12">
@@ -163,10 +167,6 @@
 					</button>
 				</div>
 				<div class="modal-body">
-
-
-
-
 					<h4>DATOS DEL VISITANTE</h4>
 					<div class="row">
 						<div class="col-3">
@@ -176,7 +176,7 @@
 						</div>
 						<div class="col-3">
 							<label for="">Tipo Documento</label>
-							<select class="form-control" name="state" id="cbtipodoc" style="width:100%;">
+							<select class="form-control" name="state" id="cbtipodoc" style="width:100%;" required>
 								<option value="1">DNI</option>
 								<option value="2">PASSAPORTE</option>
 								<option value="3">CARNET EXT.</option>
@@ -184,7 +184,7 @@
 						</div>
 						<div class="col-3">
 							<label for="">Nro Documento</label>
-							<input type="text" id="txt_nrodoc" class="form-control" placeholder="Número Documento">
+							<input type="text" id="txt_nrodoc" class="form-control" placeholder="Número Documento" required>
 						</div>
 						<div class="col-3">
 							<br>
@@ -238,14 +238,14 @@
 						<div class="row">
 							<div class="col-3">
 								<label for="">RUC</label>
-								<input type="text" class="form-control" placeholder="Número de RUC" id="txt_ruc" maxlength="11">
+								<input type="text" class="form-control" placeholder="Número de RUC" id="txt_ruc" maxlength="11" required>
 							</div>
 							<div class="col-2" style="padding-top: 30px;">
 								<button type="button" class="btn btn-primary" onclick="VerificarRuc()"><i class="fa fa-search"></i>&nbsp;Buscar</button>
 							</div>
 							<div class="col-7">
 								<label for="">Razón Social</label>
-								<input type="text" class="form-control" placeholder="Razón Social" id="txt_razon">
+								<input type="text" class="form-control" placeholder="Razón Social" id="txt_razon" required>
 							</div>
 						</div>
 					</div>
@@ -277,11 +277,11 @@
 						<div class="row">
 							<div class="col-6">
 								<label for="">AREA</label>
-								<input type="text" class="form-control" placeholder="Oficina" id="txt_area">
+								<input type="text" class="form-control" placeholder="Oficina" id="txt_area" required>
 							</div>
 							<div class="col-6">
 								<label for="">FUNCIONARIO</label>
-								<input type="text" class="form-control" placeholder="FUNCIONARIO" id="txt_funcionario">
+								<input type="text" class="form-control" placeholder="FUNCIONARIO" id="txt_funcionario" required>
 							</div>
 						</div>
 					</div>
@@ -390,7 +390,10 @@
 	forzarMayusculas("txt_paterno");
 	forzarMayusculas("txt_materno");
 	forzarMayusculas("txt_nombres");
-	$("#txt_paterno, #txt_materno, #txt_nombres").on("input", function() {
+	forzarMayusculas("txt_razon");
+	forzarMayusculas("txt_area");
+	forzarMayusculas("txt_funcionario");
+	$("#txt_paterno, #txt_materno, #txt_nombres, #txt_razon, #txt_area, #txt_funcionario").on("input", function() {
 		this.value = this.value.toUpperCase();
 	});
 </script>

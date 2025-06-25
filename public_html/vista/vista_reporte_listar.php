@@ -19,8 +19,7 @@
 			<h3 class="card-title"><i class="fas fa-file-alt"></i> REPORTES DE REGISTRO DE VISITAS</h3>
 		</div>
 		<div class="card-body">
-			<!-- Filtros -->
-			<div class="row mb-3">
+			<!-- <div class="row mb-3">
 				<div class="col-md-4">
 					<label for="select_mes">Mes:</label>
 					<select id="select_mes" class="form-control">
@@ -42,7 +41,6 @@
 				<div class="col-md-3">
 					<label for="select_anio">Año:</label>
 					<select id="select_anio" class="form-control">
-						<!-- Se llena con JS -->
 					</select>
 				</div>
 				<div class="col-md-3">
@@ -57,7 +55,7 @@
 						<i class="fas fa-file-pdf"></i> PDF
 					</button>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="table-responsive">
 				<table id="tabla_visita" class="table table-striped table-bordered nowrap" style="width:100%">

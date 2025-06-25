@@ -13,7 +13,7 @@ function listar_visita_reporte(sede, mes, anio) {
                 tabla_visita.clear().destroy(); // Limpia y destruye la instancia anterior
             }
 
-            tabla_visita = $('#tabla_visita').DataTable({
+            ttabla_visita = $('#tabla_visita').DataTable({
                 data: data.data,
                 responsive: true,
                 scrollX: true,
@@ -32,16 +32,21 @@ function listar_visita_reporte(sede, mes, anio) {
                     { data: 'motivo' },
                     {
                         data: 'ingreso',
-                        render: function (data) {
-                            const fecha = new Date(data);
-                            return fecha.toLocaleString('es-PE', {
-                                day: '2-digit',
-                                month: '2-digit',
-                                year: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                hour12: false
-                            });
+                        render: {
+                            display: function (data) {
+                                const fecha = new Date(data);
+                                return fecha.toLocaleString('es-PE', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: false
+                                });
+                            },
+                            sort: function (data) {
+                                return new Date(data).toISOString(); // formato ordenable
+                            }
                         }
                     },
                     {
@@ -59,7 +64,8 @@ function listar_visita_reporte(sede, mes, anio) {
                             });
                         }
                     }
-                ]
+                ],
+                order: [[8, 'desc']]
             });
         }
     });

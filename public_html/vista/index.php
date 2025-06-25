@@ -174,6 +174,13 @@ if (!isset($_SESSION['S_IDUSUARIO'])) {
                   </a>
                 </li>
 
+                <li class="nav-item menu-open">
+                  <a href="#" class="nav-link" onClick="cargar_contenido('contenido_principal','vista_visita_historial.php')">
+                    <i class="nav-icon fas fa-user-clock"></i>
+                    <p>Historial de visitas </p>
+                  </a>
+                </li>
+
               </ul>
         </nav>
         <!-- /.sidebar-menu -->

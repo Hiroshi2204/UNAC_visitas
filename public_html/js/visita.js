@@ -168,6 +168,14 @@ function listar_combo_rol() {
 	});
 }
 
+function marcarCampo(id, valido) {
+	if (valido) {
+		$("#" + id).removeClass("is-invalid");
+	} else {
+		$("#" + id).addClass("is-invalid");
+	}
+}
+
 function Registrar_Visita() {
 	//$("#chk_otro").val("0").change();
 	//$("#chk_otro").prop( "checked", false );
@@ -190,17 +198,34 @@ function Registrar_Visita() {
 	var cboficina_a = cboficina.split("|");
 
 	var xbpId, xroleId, xareaId, xarea, xfuncionario;
+	var valid = true;
 
-	if (xtipo != "1" && (xruc.length == 0 || xrazon.length == 0)) {
-		return Swal.fire(
-			"Mensaje de Advertencia",
-			"Ingrese Ruc y Razón Social",
-			"warning"
-		);
-	}
+	// Validaciones generales
+	marcarCampo("cbtipodoc", xtipodoc.length > 0);
+	marcarCampo("txt_nrodoc", xdoc.length > 0);
+	marcarCampo("txt_paterno", xpaterno.length > 0);
+	marcarCampo("txt_materno", xmaterno.length > 0);
+	marcarCampo("txt_nombres", xnombres.length > 0);
+	marcarCampo("cb_tipo", xtipo.length > 0);
+	marcarCampo("cb_motivo", xmotivo.length > 0);
 
-	if (xtipo != "1" && xruc.length != 11) {
-		return Swal.fire("Mensaje de Advertencia", "Ruc Incorrecto", "warning");
+	if (
+		xtipodoc.length == 0 || xdoc.length == 0 || xpaterno.length == 0 ||
+		xmaterno.length == 0 || xnombres.length == 0 || xtipo.length == 0 ||
+		xmotivo.length == 0
+	) valid = false;
+
+	// Si es tipo de representación diferente a "Título Personal", validar RUC y Razón Social
+	if (xtipo != "1") {
+		marcarCampo("txt_ruc", xruc.length === 11);
+		marcarCampo("txt_razon", xrazon.length > 0);
+
+		if (xruc.length != 11 || xrazon.length == 0) {
+			valid = false;
+			if (xruc.length != 11) {
+				return Swal.fire("Mensaje de Advertencia", "RUC incorrecto (debe tener 11 dígitos)", "warning");
+			}
+		}
 	}
 
 	if ($("#chk_otro").is(":checked")) {
@@ -212,6 +237,8 @@ function Registrar_Visita() {
 		if(xtipodoc.xarea==0 || xfuncionario.length==0){
 			return Swal.fire("Mensaje de Advertencia","Ingrese area y Funcionario","warning");
 		}*/
+		marcarCampo("txt_area", xarea.length > 0);
+		marcarCampo("txt_funcionario", xfuncionario.length > 0);
 	} else {
 		if (cboficina_id == "0") {
 			return Swal.fire(
